@@ -8,20 +8,24 @@
 </head>
 <body>
 
+  <input type="text" id="phoneNumber" placeholder="Enter phone number" style="padding: 10px; font-size: 16px;">
   <button onclick="showPopup()">Simulate M-Pesa Message</button>
 
   <div id="mpesaPopup" class="hidden">
     <p><strong>M-PESA</strong></p>
-    <p>
-      QF45T13XY Confirmed. Ksh500.00 sent to Ian Mbalasi 0114272741 on 02/05/2025 at 17:14 PM.<br>
-      New M-PESA balance is Ksh3,500.00.<br>
-      Transaction cost, Ksh6.00.<br>
-      Pay with M-PESA Global or Lipa na M-PESA.
-    </p>
+    <p id="mpesaMessageText"></p>
   </div>
 
   <script>
     function showPopup() {
+      const phone = document.getElementById('phoneNumber').value || "0114272741";
+      const message = `QF45T13XY Confirmed. Ksh500.00 sent to Ian Mbalasi ${phone} on 02/05/2025 at 17:14 PM.<br>
+        New M-PESA balance is Ksh3,500.00.<br>
+        Transaction cost, Ksh6.00.<br>
+        Pay with M-PESA Global or Lipa na M-PESA.`;
+
+      document.getElementById('mpesaMessageText').innerHTML = message;
+
       const popup = document.getElementById('mpesaPopup');
       popup.classList.remove('hidden');
       setTimeout(() => popup.classList.add('hidden'), 8000);
