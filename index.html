@@ -5,6 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simulate M-Pesa Pop-up</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Add CSS for the hidden class */
+    .hidden {
+      display: none;
+    }
+
+    /* Optional: Add styling for the popup */
+    #mpesaPopup {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      color: #000;
+      border-left: 5px solid green;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      width: 90%;
+      max-width: 350px;
+    }
+  </style>
 </head>
 <body>
 
@@ -24,10 +47,18 @@
         Transaction cost, Ksh6.00.<br>
         Pay with M-PESA Global or Lipa na M-PESA.`;
 
+      const popup = document.getElementById('mpesaPopup');
       document.getElementById('mpesaMessageText').innerHTML = message;
 
-      const popup = document.getElementById('mpesaPopup');
+      // Show the popup
       popup.classList.remove('hidden');
+
+      // Optional: Add vibration for mobile devices
+      if (navigator.vibrate) {
+        navigator.vibrate([200, 100, 200]);
+      }
+
+      // Hide the popup after 8 seconds
       setTimeout(() => popup.classList.add('hidden'), 8000);
     }
   </script>
